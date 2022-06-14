@@ -1,0 +1,15 @@
+---
+# tasks file for airflow
+- name: Python3 installation
+  yum: name=python3 state=latest
+  when: "ansible_os_family == 'Redhat'"
+
+- name: Python3-pip installation
+  yum: name=python3-pip state=latest
+  when: "ansible_os_family == 'Redhat'"
+
+- name: Airflow user creation
+  user: name=airflow group=airflow home=/opt/airflow
+
+- name: Apache Airflow installation
+  pip: name=apache-airflow state=latest
