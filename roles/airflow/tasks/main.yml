@@ -57,7 +57,7 @@
 - name: Properties changes for dags directory
   file: 
     path: "{{AIRFLOW_HOME}}/dags"
-    mode: 1644
+    mode: 644
     owner: airflow
     group: airflow
 
