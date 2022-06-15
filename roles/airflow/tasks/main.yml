@@ -1,15 +1,69 @@
 ---
 # tasks file for airflow
 - name: Python3 installation
-  yum: name=python3 state=latest
+  yum: 
+    name: python3 
+    state: latest
   when: "ansible_os_family == 'Redhat'"
 
 - name: Python3-pip installation
-  yum: name=python3-pip state=latest
+  yum: 
+    name: python3-pip 
+    state: latest
   when: "ansible_os_family == 'Redhat'"
 
+- name: Create directory {{AIRFLOW_HOME}} 
+  file:
+    path: {{AIRFLOW_HOME}}
+    state: directory
+  
 - name: Airflow user creation
-  user: name=airflow group=airflow home=/opt/airflow
+  user: 
+    name: airflow
+    group: airflow 
+    uid: 1001
+    home: {{AIRFLOW_HOME}}
 
 - name: Apache Airflow installation
-  pip: name=apache-airflow state=latest
+  pip: 
+    name: apache-airflow 
+    state: latest
+
+- name: Mount log LVM
+  ansible.posix.mount:
+    path: {{AIRFLOW_HOME}}/logs
+    src: /dev/mapper/vg01-logs
+    fstype: xfs
+    opts: rw,auto,noexec,user
+    state: present
+
+- name: Mount dags LVM
+  ansible.posix.mount:
+    path: {{AIRFLOW_HOME}}/dags
+    src: /dev/nvme1n1p1
+    fstype: ext4
+    opts: rw,auto,exec,user
+    state: present
+
+- name: enable verbose mode
+  ini_file: 
+    dest: /etc/setting.conf 
+    section: api 
+    option: auth_backend
+    value: airflow.api.auth.backend.basic_auth
+    backup: yes
+
+- name: Properties changes for dags directory
+  file: 
+    path: {{AIRFLOW_HOME}}/dags 
+    mode: 1644
+
+name: Start Systemd Unit's
+  systemd:
+    name: '{ item }}.service'
+    state: started
+  with_items:
+    - WebServer
+    - Scheduler
+
+    

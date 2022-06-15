@@ -1,7 +1,6 @@
 ---
-- name: Test connection
+- name: Airflow deployment
   hosts: all
   become: yes
-  tasks:
-  - name: Ping
-    ping:
+  roles:
+    - airflow
