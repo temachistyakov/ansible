@@ -33,7 +33,7 @@
     home: "{{AIRFLOW_HOME}}"
 
 - name: Apache Airflow installation
-  shell: pip install apache-airflow --upgrade
+  shell: pip3 install apache-airflow --upgrade
 
 #9d
 - name: Mount log LVM
