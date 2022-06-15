@@ -67,7 +67,7 @@
 
 - name: Grant user Airflow rwx access to {{AIRFLOW_HOME}}
   ansible.posix.acl:
-   path: "{{AIRFLOW_HOME}}/dags"
+    path: "{{AIRFLOW_HOME}}/dags"
     entity: airflow
     etype: user
     permissions: rwx
