@@ -32,6 +32,7 @@
   pip: 
     name: apache-airflow 
     state: latest
+    extra_args: --upgrade
 
 #9d
 - name: Mount log LVM
