@@ -16,7 +16,7 @@
   pip:
     name: pip
     extra_args: --upgrade
-    executable: /usr/local/bin/pip
+    executable: pip3
 
 #3
 - name: Create directory {{AIRFLOW_HOME}} 
