@@ -72,11 +72,11 @@
 - name: Start WebServer Unit
   systemd:
     name: WebServer.service
-    state: started
+    state: stopped
  
 - name: Start Scheduler Unit
   systemd:
     name: Scheduler.service
-    state: started
+    state: stopped
 
     
