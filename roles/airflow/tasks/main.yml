@@ -29,7 +29,8 @@
 - name: Airflow user creation
   user: 
     name: airflow
-    group: airflow 
+    group: airflow
+    shell: /bin/bash
     uid: 1001
     home: "{{AIRFLOW_HOME}}"
 
@@ -95,5 +96,3 @@
   systemd:
     name: Scheduler.service
     state: started
-
-    
