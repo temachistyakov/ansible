@@ -23,7 +23,7 @@
   file:
     path: "{{AIRFLOW_HOME}}"
     state: directory
-    mode: 700
+    mode: '700'
 
 #4
 - name: Airflow user creation
@@ -33,6 +33,7 @@
     uid: 1001
     home: "{{AIRFLOW_HOME}}"
 
+#5
 - name: Apache Airflow installation
   shell: pip3 install apache-airflow --upgrade
 
@@ -55,13 +56,14 @@
     state: present
 
 #10
-- name: Properties changes for dags directory
+- name: Properties changes for {{AIRFLOW_HOME}}/dags directory
   file: 
     path: "{{AIRFLOW_HOME}}/dags"
     state: directory
-    mode: 777
-    owner: root
-    group: root
+    owner: airflow
+    group: airflow
+    mode: '1644'
+    
 
 - name: Grant user Airflow rwx access to {{AIRFLOW_HOME}}
   ansible.posix.acl:
