@@ -8,7 +8,7 @@
   when: "ansible_os_family == 'Redhat'"
 
 - name: Install and upgrade pip
-  pip:
+  pip3:
     name: pip
     extra_args: --upgrade
     executable: pip3
