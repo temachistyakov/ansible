@@ -65,13 +65,13 @@
     mode: '644'
     
 
-#- name: Grant user Airflow rwx access to {{AIRFLOW_HOME}}
-#  ansible.posix.acl:
-#   path: "{{AIRFLOW_HOME}}/dags"
-#    entity: airflow
-#    etype: user
-#    permissions: rwx
-#    state: present
+- name: Grant user Airflow rwx access to {{AIRFLOW_HOME}}
+  ansible.posix.acl:
+   path: "{{AIRFLOW_HOME}}/dags"
+    entity: airflow
+    etype: user
+    permissions: rwx
+    state: present
 
 #11
 - name: basic_auth setup
