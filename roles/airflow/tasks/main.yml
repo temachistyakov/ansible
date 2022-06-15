@@ -69,12 +69,14 @@
     backup: yes
 
 #14
-- name: Start Systemd Unit's
+- name: Start WebServer Unit
   systemd:
-    name: '{ item }}.service'
+    name: WebServer.service
     state: started
-  with_items:
-    - WebServer
-    - Scheduler
+ 
+- name: Start Scheduler Unit
+  systemd:
+    name: Scheduler.service
+    state: started
 
     
