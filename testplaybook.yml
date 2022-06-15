@@ -2,5 +2,7 @@
 - name: Airflow deployment
   hosts: all
   become: yes
+  environment:
+    AIRFLOW_HOME: /opt/airflow
   roles:
     - airflow
