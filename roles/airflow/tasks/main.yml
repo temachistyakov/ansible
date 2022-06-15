@@ -4,13 +4,13 @@
 - name: Python3 installation
   yum: 
     name: python3 
-    state: latest
+    state: present
 
 #1
 - name: Python3-pip installation
   yum: 
     name: python3-pip 
-    state: latest
+    state: present
 
 - name: Install and upgrade pip
   pip:
@@ -33,7 +33,7 @@
     home: "{{AIRFLOW_HOME}}"
 
 - name: Apache Airflow installation
-  pip: 
+  shell: 
     name: apache-airflow 
     state: latest
     extra_args: --upgrade
