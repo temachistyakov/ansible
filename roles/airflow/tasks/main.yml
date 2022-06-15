@@ -23,6 +23,7 @@
   file:
     path: "{{AIRFLOW_HOME}}"
     state: directory
+    mode: 700
 
 #4
 - name: Airflow user creation
@@ -57,9 +58,10 @@
 - name: Properties changes for dags directory
   file: 
     path: "{{AIRFLOW_HOME}}/dags"
-    mode: 644
-    owner: airflow
-    group: airflow
+    state: directory
+    mode: 777
+    owner: root
+    group: root
 
 - name: Grant user Airflow rwx access to {{AIRFLOW_HOME}}
   ansible.posix.acl:
