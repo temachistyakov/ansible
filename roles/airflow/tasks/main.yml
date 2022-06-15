@@ -14,9 +14,9 @@
 
 - name: Install and upgrade pip
   pip:
-    name: pip
+    name: pip3
     extra_args: --upgrade
-    executable: pip3
+    executable: pip
 
 #3
 - name: Create directory {{AIRFLOW_HOME}} 
@@ -59,7 +59,7 @@
 - name: Properties changes for {{AIRFLOW_HOME}}/dags directory
   file: 
     path: "{{AIRFLOW_HOME}}/dags"
-    mode: "1777"
+    mode: "1755"
     state: directory
     owner: airflow
     group: airflow
