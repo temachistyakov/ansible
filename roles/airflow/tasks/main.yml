@@ -58,11 +58,21 @@
   file: 
     path: "{{AIRFLOW_HOME}}/dags"
     mode: 1644
+    owner: airflow
+    group: airflow
+
+- name: Grant user Airflow rwx access to {{AIRFLOW_HOME}}
+  ansible.posix.acl:
+    path: "{{AIRFLOW_HOME}}/dags"
+    entity: airflow
+    etype: user
+    permissions: rwx
+    state: present
 
 #11
 - name: basic_auth setup
   ini_file: 
-    dest: /etc/setting.conf 
+    dest: "{{AIRFLOW_HOME}}/airflow.cfg"
     section: api 
     option: auth_backend
     value: airflow.api.auth.backend.basic_auth
@@ -72,11 +82,11 @@
 - name: Start WebServer Unit
   systemd:
     name: WebServer.service
-    state: stopped
+    state: started
  
 - name: Start Scheduler Unit
   systemd:
     name: Scheduler.service
-    state: stopped
+    state: started
 
     
