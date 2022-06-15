@@ -5,14 +5,12 @@
   yum: 
     name: python3 
     state: latest
-  when: "ansible_os_family == 'Redhat'"
 
 #1
 - name: Python3-pip installation
   yum: 
     name: python3-pip 
     state: latest
-  when: "ansible_os_family == 'Redhat'"
 
 - name: Install and upgrade pip
   pip:
