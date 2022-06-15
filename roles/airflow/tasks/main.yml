@@ -36,7 +36,7 @@
 #9d
 - name: Mount log LVM
   ansible.posix.mount:
-    path: "{{AIRFLOW_HOME}}"/logs
+    path: "{{AIRFLOW_HOME}}/logs"
     src: /dev/mapper/vg01-logs
     fstype: xfs
     opts: rw,auto,noexec,user
@@ -45,7 +45,7 @@
 #9d
 - name: Mount dags LVM
   ansible.posix.mount:
-    path: "{{AIRFLOW_HOME}}"/dags
+    path: "{{AIRFLOW_HOME}}/dags"
     src: /dev/nvme1n1p1
     fstype: ext4
     opts: rw,auto,exec,user
@@ -54,7 +54,7 @@
 #10
 - name: Properties changes for dags directory
   file: 
-    path: "{{AIRFLOW_HOME}}"/dags 
+    path: "{{AIRFLOW_HOME}}/dags"
     mode: 1644
 
 #11
