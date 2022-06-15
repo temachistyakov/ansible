@@ -62,7 +62,7 @@
     state: directory
     owner: airflow
     group: airflow
-    mode: '1644'
+    mode: '644'
     
 
 - name: Grant user Airflow rwx access to {{AIRFLOW_HOME}}
