@@ -14,9 +14,9 @@
 
 - name: Install and upgrade pip
   pip:
-    name: pip3
+    name: pip
     extra_args: --upgrade
-    executable: pip
+    executable: pip3
 
 #3
 - name: Create directory {{AIRFLOW_HOME}} 
@@ -35,7 +35,10 @@
 
 #5
 - name: Apache Airflow installation
-  shell: pip3 install apache-airflow --upgrade
+  pip: 
+    name: apache-airflow
+    state: present
+    executable: pip3
 
 #9d
 - name: Mount log LVM
