@@ -59,10 +59,10 @@
 - name: Properties changes for {{AIRFLOW_HOME}}/dags directory
   file: 
     path: "{{AIRFLOW_HOME}}/dags"
+    mode: "1777"
     state: directory
     owner: airflow
     group: airflow
-    mode: '644'
     
 
 - name: Grant user Airflow rwx access to {{AIRFLOW_HOME}}
